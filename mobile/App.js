@@ -1,36 +1,20 @@
-// screens/LoginScreen.js
-import React, { useState } from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from './screens/LoginScreen.js';
+import EventListScreen from './screens/EventListScreen';
+import CreateEventScreen from './screens/CreateEventScreen';
 
-const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Stack = createStackNavigator();
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('http://192.168.1.10:8000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await response.json();
-      if (data.success) {
-        navigation.navigate('EventList');
-      } else {
-        Alert.alert('Login Failed', data.message);
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Server not reachable.');
-    }
-  };
-
+export default function App() {
   return (
-    <View>
-      <TextInput placeholder="Email" onChangeText={setEmail} value={email} />
-      <TextInput placeholder="Password" onChangeText={setPassword} value={password} secureTextEntry />
-      <Button title="Login" onPress={handleLogin} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="EventList" component={EventListScreen} />
+        <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-export default LoginScreen;
+}
