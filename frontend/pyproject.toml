@@ -1,0 +1,24 @@
+[tool.briefcase]
+project_name = "Event Management System"
+bundle = "com.eventmanagement.system"
+version = "0.1.0"
+url = "https://example.com/event-management-system"
+license = "MIT"
+author = "Event Management System"
+author_email = "admin@example.com"
+
+[tool.briefcase.app.eventmanagement]
+formal_name = "Event Management System"
+description = "Create, manage, and collaborate on events."
+long_description = "An event management application built with BeeWare and Toga."
+sources = ["beeware_app"]
+requires = [
+    "toga>=0.4.7",
+    "httpx>=0.27.0",
+]
+
+[tool.briefcase.app.eventmanagement.android]
+requires = [
+    "toga-android>=0.4.7",
+    "httpx>=0.27.0",
+]

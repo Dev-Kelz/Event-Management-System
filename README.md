@@ -1,6 +1,6 @@
 # Event Management System
 
-A full-stack Event Management System built with **Kivy** for the frontend and **FastAPI** for the backend. The application allows users to create, manage, and participate in events through an intuitive user interface and a robust RESTful API.
+A full-stack Event Management System built with **BeeWare/Toga** for the frontend and **FastAPI** for the backend. The application allows users to create, manage, and participate in events through an intuitive user interface and a robust RESTful API.
 
 ## Features
 
@@ -18,8 +18,8 @@ A full-stack Event Management System built with **Kivy** for the frontend and **
 ### Frontend
 
 * Python
-* Kivy
-* KivyMD (Optional for Material Design UI)
+* BeeWare
+* Toga
 
 ### Backend
 
@@ -33,21 +33,61 @@ A full-stack Event Management System built with **Kivy** for the frontend and **
 ```text
 Event-Management-System/
 │
-├── backend/                # FastAPI Backend
+├── backend/
 │   ├── app/
+│   │   ├── main.py
+│   │   ├── core/
+│   │   │   ├── config.py
+│   │   │   ├── security.py
+│   │   │   └── database.py
+│   │   ├── models/
+│   │   │   ├── user.py
+│   │   │   ├── event.py
+│   │   │   ├── stage.py
+│   │   │   ├── task.py
+│   │   │   └── notification.py
+│   │   ├── schemas/
+│   │   │   ├── user.py
+│   │   │   ├── event.py
+│   │   │   ├── stage.py
+│   │   │   ├── task.py
+│   │   │   └── notification.py
+│   │   ├── routers/
+│   │   │   ├── auth.py
+│   │   │   ├── users.py
+│   │   │   ├── events.py
+│   │   │   ├── tasks.py
+│   │   │   └── notifications.py
+│   │   ├── services/
+│   │   │   ├── auth_service.py
+│   │   │   ├── event_service.py
+│   │   │   ├── task_service.py
+│   │   │   └── notification_service.py
+│   │   └── dependencies/
+│   │       └── auth.py
+│   │
+│   ├── alembic/
+│   ├── tests/
 │   ├── requirements.txt
-│   └── main.py
+│   └── .env
 │
-├── frontend/               # Kivy Frontend
-│   ├── screens/
-│   ├── widgets/
-│   ├── assets/
-│   ├── main.py
-│   └── requirements.txt
-│
-├── docs/                   # Documentation
-│
-└── README.md
+└── frontend/
+    └── beeware_app/
+        ├── app.py
+        ├── screens/
+        │   ├── login.py
+        │   ├── register.py
+        │   ├── dashboard.py
+        │   ├── events.py
+        │   ├── event_details.py
+        │   ├── tasks.py
+        │   ├── notifications.py
+        │   └── profile.py
+        │
+        ├── services/
+        │   └── api.py
+        │
+        └── models/
 ```
 
 ## Prerequisites
@@ -107,7 +147,7 @@ pip install -r requirements.txt
 ```bash
 cd backend
 
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 The backend API will run at:
@@ -116,12 +156,12 @@ The backend API will run at:
 http://127.0.0.1:8000
 ```
 
-### Start the Kivy Frontend
+### Start the BeeWare Frontend
 
 ```bash
 cd frontend
 
-python main.py
+python app.py
 ```
 
 ## Environment Variables
